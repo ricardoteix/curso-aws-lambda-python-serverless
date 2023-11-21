@@ -2,8 +2,8 @@ import requests
 
 # https://api.telegram.org/bot{{TOKEN}}/getUpdates
 
-bot_token = '6562601245:AAFjBAXU2Vv6TpljXgCAw0EVZXbUrbTZ68s'
-id_canal = '-1002128690041'
+bot_token = 'MEU_TOKEN_TELEGRAM'
+id_canal = 'ID_DO_MEU_CANAL'
 
 api_url = f'https://api.telegram.org/bot{bot_token}/sendMessage'
 

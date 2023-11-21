@@ -1,0 +1,7 @@
+# LIGAR (GMT)
+0    10    ?              *       2-6             *
+Min  Hour  Day of month   Month   Day of week   Year
+
+# DESLIGAR (GMT)
+0    22     ?              *       2-6             *
+Min  Hour  Day of month   Month   Day of week   Year

@@ -1,0 +1,5 @@
+-- Log do Sistema --
+Lendo arquivo
+Alterando 'casado' para false
+Gravar novo arquivo
+Adicionando ao novo arquivo

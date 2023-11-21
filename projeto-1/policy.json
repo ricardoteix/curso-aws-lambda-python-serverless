@@ -1,0 +1,30 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:StartInstances",
+                "ec2:StopInstances",
+                "rds:StopDBInstance",
+                "logs:CreateLogGroup",
+                "rds:StartDBInstance"
+            ],
+            "Resource": [
+                "arn:aws:ec2:us-east-1:ID_DA_CONTA_AWS:instance/ID_DA_EC2",
+                "arn:aws:logs:us-east-1:ID_DA_CONTA_AWS:*",
+                "arn:aws:rds:us-east-1:ID_DA_CONTA_AWS:db:NOME_INSTANCIA_RDS"
+            ]
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:us-east-1:ID_DA_CONTA_AWS:log-group:/aws/lambda/NOME_DA_LAMBDA:*"
+        }
+    ]
+}

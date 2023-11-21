@@ -1,0 +1,56 @@
+service: projeto2
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.11
+  profile: automacao-curso
+  region: us-east-1
+  stage: dev
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action: 
+            - ses:SendEmail
+          Resource: 
+            - arn:aws:ses:${self:provider.region}:*:identity/*
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+          Resource:
+            - arn:aws:s3:::${self:custom.bucketName}/*
+        - Effect: Allow
+          Action:
+            - s3:ListBucket
+          Resource:
+            - arn:aws:s3:::${self:custom.bucketName}/
+
+functions:
+  envio-email:
+    handler: handler.envio_email
+    events:
+      - s3:
+          bucket: ${self:custom.bucketName}
+          event: s3:ObjectCreated:Put
+          rules:
+            - suffix: .csv
+
+custom:
+  bucketName: envio-email-projeto2
+  serverless-s3-cleaner: 
+    prompt: false
+    buckets:
+      - ${self:custom.bucketName}
+
+
+plugins:
+  - serverless-s3-cleaner
+
+package: 
+  patterns:
+    - '!node_modules/**'
+    - '!env/**'
+    - '!*.csv'
+    - '!*.json'

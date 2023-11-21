@@ -1,0 +1,39 @@
+service: projeto3-aws-custo-telegram
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  profile: automacao-curso
+  region: us-east-1
+  stage: prod
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - ce:GetCostAndUsage
+          Resource: '*'
+
+functions:
+  get_cost:
+    handler: handler.get_cost
+    events:
+      - schedule: 
+          rate: rate(1 minute)
+          enabled: false
+          input: {}
+      - schedule: 
+          rate: cron(0 23 * * ? *)
+          enabled: true
+          input: {}
+
+plugins:
+  - serverless-python-requirements
+
+package: 
+  patterns:
+    - '!env'
+    - '!node_modules'
+    - '!*.json'

@@ -1,0 +1,10 @@
+{
+    "nome": "Nome da Pessoa",
+    "endereco": "Rua Tal, n 76",
+    "cpf": "123.345.987-90",
+    "casado": true,
+    "imoveis": [
+        "casa", "sitio"
+    ],
+    "idade": 65
+}
